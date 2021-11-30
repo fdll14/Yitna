@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>YITNA - Yitna Yuwana</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/static/frontend/img/favicon.png" rel="icon">
+  <link href="/static/frontend/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/static/frontend/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/static/frontend/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/frontend/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/static/frontend/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/static/frontend/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/static/frontend/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/static/frontend/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/static/frontend/css/landingpage.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Bootslander - v4.7.0
+  * Template URL: https://bootstrapmade.com/bootslander-free-bootstrap-landing-page-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <div class="logo">
+        <h1><a href="index.html"><span>YITNA</span></a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="../static/frontend/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#features">Wisata</a></li>
+          <li><a class="nav-link scrollto" href="#faq">FAQ</a></li>
+          <li><a class="nav-link scrollto" href="/login">Login</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col-lg-7 pt-5 pt-lg-0 order-2 order-lg-1 d-flex align-items-center">
+          <div data-aos="zoom-out">
+            <h1>Pergi ke tempat wisata lebih aman dengan <span>YITNA</span></h1>
+            <h2>Kami menyediakan data penyebaran covid dengan update secara berkala</h2>
+
+            <div class="col-md-10">
+              <div class="input-group">
+                <input type="text" class="form-control" id="inputcari" placeholder="Cari Tempat Wisata Tegal">
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-success" id="cari">Cari</button>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+        <div class="col-lg-4 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="300">
+          <img src="../static/frontend/img/hero-img.png" class="img-fluid animated" alt="">
+        </div>
+      </div>
+    </div>
+
+    <svg class="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 " preserveAspectRatio="none">
+      <defs>
+        <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z">
+      </defs>
+      <g class="wave1">
+        <use xlink:href="#wave-path" x="50" y="3" fill="rgba(255,255,255, .1)">
+      </g>
+      <g class="wave2">
+        <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255, .2)">
+      </g>
+      <g class="wave3">
+        <use xlink:href="#wave-path" x="50" y="9" fill="#fff">
+      </g>
+    </svg>
+
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= Features Section ======= -->
+    <section id="features" class="features">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2>Kategori</h2>
+          <p>Kategori Tempat Wisata</p>
+        </div>
+
+        <div class="row" data-aos="fade-left">
+          {% for d in data.kategori %}
+          <div class="col-lg-3 col-md-4 mb-4">
+            <div class="icon-box" data-aos="zoom-in" data-aos-delay="50">
+              <i class="ri-store-line" style="color: #ffbb2c;"></i>
+              <h3><a href="/kategori/{{d[0]}}">{{d[1]}}</a></h3>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+      </div>
+    </section><!-- End Features Section -->
+
+    <!-- ======= Counts Section ======= -->
+    <section id="counts" class="counts">
+      <div class="container">
+
+        <div class="row" data-aos="fade-up">
+          
+          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+            <div class="count-box">
+              <i class="bi bi-people"></i>
+              <span data-purecounter-start="0" data-purecounter-end="{{data.persebaran[0][0]}}" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Pasien Isoman</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="count-box">
+              <i class="bi bi-emoji-smile"></i>
+              <span data-purecounter-start="0" data-purecounter-end="{{data.persebaran[0][1]}}" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Pasien Positif</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+            <div class="count-box">
+              <i class="bi bi-journal-richtext"></i>
+              <span data-purecounter-start="0" data-purecounter-end="{{data.persebaran[0][2]}}" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Pasien Sembuh</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+            <div class="count-box">
+              <i class="bi bi-headset"></i>
+              <span data-purecounter-start="0" data-purecounter-end="{{data.persebaran[0][3]}}" data-purecounter-duration="1" class="purecounter"></span>
+              <p>Pasien Meninggal</p>
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+    </section><!-- End Counts Section -->
+
+    <section id="detail" class="{% if data.display %}show{% else %}d-none{% endif %}">
+      <div class="container">
+        {% for d in data.detail %}
+        <div class="section-title" data-aos="fade-up">
+          <h2>Detail Wisata</h2>
+          <p>{{d[0]}}</p>
+        </div>
+
+        <div class="row" data-aos="fade-left">
+          <div class="col-md-6">
+            <img src="/static/upload/wisata/{{d[1]}}" class="img-thumbnail" alt="">
+          </div>
+          <div class="col-md-6">
+            <p style="font-weight:bolder">Kecamatan {{d[3]}}, Kelurahan{{d[4]}}</p>
+            <p style="text-align: justify;">{{d[2]}}</p>
+            <ul>
+              <li>Isoman : {{d[5]}}</li>
+              <li>Dirawat : {{d[6]}}</li>
+              <li>Sembuh : {{d[7]}}</li>
+              <li>Meninggal : {{d[8]}}</li>
+            </ul>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- ======= Team Section ======= -->
+    <section id="team" class="team {% if data.display %}d-none{% else %}{% endif %}" data-scroll="{% if data.scroll %}1{% else %}0{% endif %}">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2>Wisata</h2>
+          <p>Daftar Tempat Wisata</p>
+        </div>
+
+        <div class="row" data-aos="fade-left">
+          {% for d in data.wisata %}
+          <div class="col-lg-3 col-md-6 mb-4" onclick="document.location.href='/detail/{{d[0]}}'">
+            <div class="member" data-aos="zoom-in" data-aos-delay="100">
+              <div class="pic"><img src="/static/upload/wisata/{{d[3]}}" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>{{d[1]}}</h4>
+                <span>{{d[2]}}</span>
+                <div class="social">
+                  <p style="font-weight:bolder">{{d[4]}} - {{d[5]}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+      </div>
+    </section><!-- End Team Section -->
+
+    <!-- ======= F.A.Q Section ======= -->
+    <section id="faq" class="faq section-bg">
+      <div class="container">
+
+        <div class="section-title" data-aos="fade-up">
+          <h2>F.A.Q</h2>
+          <p>Pertanyaan yang Sering Diajukan</p>
+        </div>
+
+        <div class="faq-list">
+          <ul>
+            <li data-aos="fade-up">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">Apa itu GIMIN? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
+                <p>
+                  Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="100">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">Feugiat scelerisque varius morbi enim nunc? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="200">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">Dolor sit amet consectetur adipiscing elit? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="300">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" class="collapsed">Tempus quam pellentesque nec nam aliquam sem et tortor consequat? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in.
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="400">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed">Tortor vitae purus faucibus ornare. Varius vel pharetra vel turpis nunc eget lorem dolor? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo integer malesuada nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc eget lorem dolor sed. Ut venenatis tellus in metus vulputate eu scelerisque.
+                </p>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+      </div>
+    </section><!-- End F.A.Q Section -->
+
+    
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>YITNA</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/bootslander-free-bootstrap-landing-page-template/ -->
+        Designed by Wagu
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="../static/frontend/vendor/purecounter/purecounter.js"></script>
+  <script src="../static/frontend/vendor/aos/aos.js"></script>
+  <script src="../static/frontend/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../static/frontend/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../static/frontend/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../static/frontend/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../static/frontend/js/landingpage.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      if (document.getElementById('team').dataset.scroll == 1){
+        window.scrollTo({
+          top: document.getElementById('team').offsetTop,
+          behavior: 'smooth'
+        });
+      }
+      if(document.getElementById('detail').classList.contains("show")){
+        window.scrollTo({
+          top: document.getElementById('detail').offsetTop,
+          behavior: 'smooth'
+        });
+      }
+      document.getElementById('cari').addEventListener('click', function(){
+        document.location.href = '/cari/'+document.getElementById('inputcari').value;
+      })
+    });
+
+  </script>
+
+</body>
+
+</html>
