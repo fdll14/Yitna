@@ -23,7 +23,7 @@ class Yolo:
         weights_path = "../../yolo-coco/yolov3.weights"
         font_scale = 1
         thickness = 1
-        LABELS = open("yolo-coco/coco.names").read().strip().split("\n")
+        LABELS = open("../../yolo-coco/coco.names").read().strip().split("\n")
         COLORS = np.random.randint(0, 255, size=(len(LABELS), 3), dtype="uint8")
         
         net = cv2.dnn.readNetFromDarknet(config_path, weights_path)
