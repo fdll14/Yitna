@@ -6,6 +6,8 @@ from werkzeug.utils import secure_filename
 from app.models.satgas import Satgas
 from app.models.wisata import Wisata
 from app.models.user import User
+from app.models.kategori import Kategori
+from app.models.persebaran import Persebaran
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
@@ -23,11 +25,16 @@ def admin():
         return redirect(url_for('login'))
     else:
         user = User()
+        persebaran = Persebaran()
+
         data = user.getOneId(str(session.get('id')))
         if data[0] == 'satgas':
             return redirect(url_for('satgas'))
         else:
-            return render_template('admin/index.html')
+            data = {
+                'persebaran': persebaran.get()
+            }
+            return render_template('admin/index.html', data=data)
 @app.route('/admin/satgas/<idx>', methods = ['GET', 'POST'])
 def admin_satgas(idx='all'):
     if request.method == "POST":
@@ -74,16 +81,18 @@ def admin_wisata(idx='all'):
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         wisata = Wisata()
         inputan = request.form
-        wisata.store(inputan['nama'], inputan['kecamatan'], inputan['kelurahan'], inputan['deskripsi'], filename)
+        wisata.store(inputan['nama'],inputan['kategori'], inputan['kecamatan'], inputan['kelurahan'], inputan['deskripsi'], filename)
         flash('Berhasil tambah data')
         return redirect(url_for('admin_wisata', idx='all'))
     elif request.method == "GET" :
         if idx == 'all':
             wisata = Wisata()
+            kategori = Kategori()
             data = {
                 'wisata':wisata.get(),
                 'kecamatan':wisata.kecamatan(),
-                'kelurahan':wisata.kelurahan()
+                'kelurahan':wisata.kelurahan(),
+                'kategori':kategori.get()
             }
             return render_template('admin/wisata.html', data=data)
         else:
@@ -94,26 +103,32 @@ def admin_wisata(idx='all'):
 @app.route('/admin/wisata/delete/<idx>', methods = ['GET'])
 def admin_wisata_delete(idx=None):
     wisata = Wisata()
+    filename = wisata.getCurrentFile(idx)
+    os.unlink(os.path.join(app.config['UPLOAD_FOLDER'], filename[0]))
     data = wisata.destroy(idx)
     flash('Berhasil hapus data')
     return redirect(url_for('admin_wisata', idx='all'))
 @app.route('/admin/wisata/update', methods = ['POST'])
 def admin_wisata_update():
+    wisata = Wisata()
+    inputan = request.form
     
     if not request.files['foto'] :
         filename = 'sama'
     else :
         file = request.files['foto']
+        res = wisata.getCurrentFile(inputan['id'])
+        filename = res[0]
+        os.unlink(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             filename = make_unique(filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
         else :
             return redirect(url_for('admin_wisata', idx='all'))
 
-    wisata = Wisata()
-    inputan = request.form
-    wisata.update(inputan['id'], inputan['nama'], inputan['kecamatan'], inputan['kelurahan'], inputan['deskripsi'], filename)
+    wisata.update(inputan['id'], inputan['nama'], inputan['kategori'], inputan['kecamatan'], inputan['kelurahan'], inputan['deskripsi'], filename)
     flash('Berhasil update data')
     return redirect(url_for('admin_wisata', idx='all'))

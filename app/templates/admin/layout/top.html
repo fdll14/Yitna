@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	  <link rel="icon" href="/static/upload/images/favicon.ico" type="image/ico" />
+	  <link href="/static/frontend/img/favicon.png" rel="icon">
 
-    <title>Yitna | Dashboard</title>
+    <title>YITNA | Dashboard</title>
 
     <!-- Bootstrap -->
     <link href="/static/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -48,7 +48,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="/" class="site_title"><i class="fa fa-paw"></i> <span>YITNA</span></a>
+              <a href="/" class="site_title"><span>YITNA v1.0.0 </span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -60,7 +60,7 @@
               </div>
               <div class="profile_info">
                 <span>Selamat Datang</span>
-                <h2>Admin</h2>
+                <h2>{{session['user'][3]}}</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -94,10 +94,9 @@
               <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                   <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img src="/static/upload/profile/avatar.png" alt=""> Adam
+                    <img src="/static/upload/profile/avatar.png" alt=""> {{session['user'][3]}}
                   </a>
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item"  href="/profile"> Profil</a>
                     <a class="dropdown-item"  href="/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                   </div>
                 </li>

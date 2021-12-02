@@ -5,17 +5,17 @@ class Wisata:
     def get(self):
         conn = mysql.connect()
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM tempat_wisata")
+        cursor.execute("SELECT * FROM tempat_wisata JOIN kategori ON kategori.id_kategori = tempat_wisata.kategori")
         return cursor.fetchall()
     def getOne(self, id):
         conn = mysql.connect()
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM tempat_wisata WHERE id_wisata ="+id)
+        cursor.execute("SELECT * FROM tempat_wisata JOIN kategori ON kategori.id_kategori = tempat_wisata.kategori WHERE id_wisata ="+id)
         return cursor.fetchone()
-    def store(self, nama, kecamatan, kelurahan, deskripsi, gambar):
+    def store(self, nama, kategori, kecamatan, kelurahan, deskripsi, gambar):
         conn = mysql.connect()
         cursor = conn.cursor()
-        cursor.execute("INSERT INTO tempat_wisata (nama, kecamatan, kelurahan, deskripsi, gambar) VALUES (%s, %s, %s, %s, %s)", (nama, kecamatan, kelurahan, deskripsi, gambar))
+        cursor.execute("INSERT INTO tempat_wisata (nama, kategori, kecamatan, kelurahan, deskripsi, gambar) VALUES (%s, %s, %s, %s, %s, %s)", (nama, kategori, kecamatan, kelurahan, deskripsi, gambar))
         conn.commit()
         cursor.close()
     def destroy(self,id):
@@ -24,15 +24,20 @@ class Wisata:
         cursor.execute("DELETE FROM tempat_wisata WHERE id_wisata = "+id)
         conn.commit()
         cursor.close()
-    def update(self, id, nama, kecamatan, kelurahan, deskripsi, gambar):
+    def update(self, id, nama, kategori, kecamatan, kelurahan, deskripsi, gambar):
         conn = mysql.connect()
         cursor = conn.cursor()
         if gambar == 'sama':
-            cursor.execute("UPDATE tempat_wisata SET nama ='"+nama+"', kecamatan = '"+kecamatan+"', kelurahan = '"+kelurahan+"', deskripsi = '"+deskripsi+"' WHERE id_wisata = "+id)
+            cursor.execute("UPDATE tempat_wisata SET nama ='"+nama+"', kategori = '"+kategori+"', kecamatan = '"+kecamatan+"', kelurahan = '"+kelurahan+"', deskripsi = '"+deskripsi+"' WHERE id_wisata = "+id)
         else:
-            cursor.execute("UPDATE tempat_wisata SET nama ='"+nama+"', kecamatan = '"+kecamatan+"', kelurahan = '"+kelurahan+"', deskripsi = '"+deskripsi+"', gambar = '"+gambar+"' WHERE id_wisata = "+id)
+            cursor.execute("UPDATE tempat_wisata SET nama ='"+nama+"', kategori = '"+kategori+"', kecamatan = '"+kecamatan+"', kelurahan = '"+kelurahan+"', deskripsi = '"+deskripsi+"', gambar = '"+gambar+"' WHERE id_wisata = "+id)
         conn.commit()
         cursor.close()
+    def getCurrentFile(self, id_wisata):
+        conn = mysql.connect()
+        cursor = conn.cursor()
+        cursor.execute("SELECT gambar FROM tempat_wisata WHERE id_wisata ="+id_wisata)
+        return cursor.fetchone()
     def kecamatan(self):
         conn = mysql.connect()
         cursor = conn.cursor()

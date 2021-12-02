@@ -23,10 +23,9 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Nama</th>
-                                        <th> Kategori</th>
-                                        <th>Alamat</th>
+                                        <th>Kategori</th>
                                         <th>Deskripsi</th>
-                                        <th>Image</th>
+                                        <th>Foto</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -34,10 +33,9 @@
                                     <tr>
                                         <td>{{loop.index}}</td>
                                         <td>{{ d[1] }}</td>
-                                        <td>{{ d[5] }}</td>
-                                        <td>{{ d[2] }}, {{ d[3] }}</td>
+                                        <td>{{ d[10] }}</td>
                                         <td>{{ d[4][0:100] }} ...</td>
-                                        <td>{{ d[12] }}</td>
+                                        <td><img src="/static/upload/wisata/{{d[6]}}" class="img-thumbnail" width="200px"></td>
                                         <td>
                                             <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
                                                 <button type="button" class="btn btn-warning btn_ubah" data-toggle="modal" value="{{ d[0] }}" title="Edit" onclick="getWisata(this)">
@@ -80,6 +78,17 @@
                             <div class="form-group row">
                                 <label class="col-form-label" for="nama">Nama</label>
                                 <input type="text" id="nama" class="form-control" name="nama">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label for="kategori">Kategori</label>
+                                <select class="form-control select2" name="kategori" data-placeholder="Choose one.." id="kategori">
+                                    <option value=""></option>
+                                    {% for d in data.kategori %}
+                                        <option value="{{ d[0] }}">{{ d[1] }}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-12">

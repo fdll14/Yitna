@@ -6,7 +6,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            &copy; <a href="/">YITNA</a> 2021
+            &copy; <a href="/">GIMIN - Pergi Terjamin</a> 2021
           </div>
           <div class="clearfix"></div>
         </footer>
@@ -39,7 +39,8 @@
             </div>
         </div>
     </div>
-        
+    <input type="hidden" id="violations" value="{{data.violations}}">
+    <input type="hidden" id="time" value="{{data.time}}">
 
 
     <!-- jQuery -->
@@ -106,6 +107,11 @@
     <script src="/static/vendors/pdfmake/build/vfs_fonts.js"></script>
 	
     <script>
+
+
+
+
+
         $('.dropify').dropify();
         $('table').DataTable({});
         $('.select2').select2();

@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	  <link rel="icon" href="/static/upload/images/favicon.ico" type="image/ico" />
+	  <link href="/static/frontend/img/favicon.png" rel="icon">
 
-    <title>YITNA</title>
+    <title>YITNA | Dashboard</title>
 
     <!-- Bootstrap -->
     <link href="/static/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -94,10 +94,9 @@
               <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                   <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img src="/static/upload/profile/avatar.png" alt=""> Adam
+                    <img src="/static/upload/profile/avatar.png" alt=""> {{session['user'][3]}}
                   </a>
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item"  href="/profile"> Profil</a>
                     <a class="dropdown-item"  href="/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                   </div>
                 </li>

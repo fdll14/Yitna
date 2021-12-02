@@ -6,17 +6,53 @@ from app import mysql
 from app.models.monitoring import Monitoring
 from app.models.riwayat import Riwayat
 from app.models.yolo import Yolo
+from app.models.persebaran import Persebaran
 
 def make_unique(string):
     ident = uuid4().__str__()[:8]
     return f"{ident}-{string}"
 
-@app.route('/satgas', methods = ['GET'])
+@app.route('/satgas', methods = ['GET', 'POST'])
 def satgas():
-    if not session.get('id'):
-        return redirect(url_for('login'))
+    if request.method == "POST":
+        riwayat = Riwayat()
+        inputan = request.form
+        kamera = inputan['kamera']
+        from_date = inputan['tgl_awal']
+        to_date = inputan['tgl_akhir']
+
+        chart = riwayat.getWithFilter(kamera, from_date, to_date)
+        violations = list()
+        time = list()
+
+        for f in chart:
+            violations.append(f[2])
+            time.append(f[4])
+
+        persebaran = Persebaran()
+        monitoring = Monitoring()
+            
+        data = {
+            'persebaran': persebaran.get(),
+            'kamera': monitoring.get(),
+            'violations': violations,
+            'time': time
+        }
+        
+        return render_template('satgas/index.html', data=data)
     else:
-        return render_template('satgas/index.html')
+        if not session.get('id'):
+            return redirect(url_for('login'))
+        else:
+            persebaran = Persebaran()
+            monitoring = Monitoring()
+            
+
+            data = {
+                'persebaran': persebaran.get(),
+                'kamera': monitoring.get()
+            }
+            return render_template('satgas/index.html', data=data)
 
 # MY BAZOKA
 @app.route('/satgas/camera/<id>', methods = ['GET'])

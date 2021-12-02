@@ -6,7 +6,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            &copy; <a href="/">YITNA</a> 2021
+            &copy; <a href="/">YITNA YUWANA</a> 2021
           </div>
           <div class="clearfix"></div>
         </footer>
@@ -106,6 +106,7 @@
     <script src="/static/vendors/pdfmake/build/vfs_fonts.js"></script>
 	
     <script>
+    
         $('.dropify').dropify();
         $('.select2').select2();
         $('table').DataTable({});
@@ -168,15 +169,17 @@
             .then(data => {
                 $('#myForm').attr('action', `/admin/wisata/update`);
                 $('#id_hidden').val(col.value);
-                console.log(data)
+                
                 $('#nama').val(data.result[1]);
                 $('#deskripsi').val(data.result[4]);
+                $('select[name=kategori]').val(data.result[9]);
+				$('select[name=kategori]').trigger('change');
                 $('select[name=kecamatan]').val(data.result[3]);
 				$('select[name=kecamatan]').trigger('change');
                 $('select[name=kelurahan]').val(data.result[2]);
 				$('select[name=kelurahan]').trigger('change');
 
-                var imagenUrl = '/static/upload/wisata/'+data.result[5];
+                var imagenUrl = '/static/upload/wisata/'+data.result[6];
                 var drEvent = $('input[type=file]').dropify(
                 {
                     defaultFile: imagenUrl
@@ -188,8 +191,6 @@
                 drEvent.destroy();
                 drEvent.init();
                 
-                // $('input[type=file]').val('sama');
-
             
             })
             .catch(error => console.error('Error:', error));
@@ -251,7 +252,10 @@
                 },
                 deskripsi: {
                     required: true,
-                    maxlength: 1000,
+                    maxlength: 3000,
+                },
+                kategori: {
+                    required: true,
                 },
             },
             errorPlacement: function(error, element) {

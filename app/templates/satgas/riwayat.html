@@ -52,31 +52,32 @@
                     </div>
                 </form>
                 <hr>
-            <table id="tableku" class="table table-striped table-bordered" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Lokasi</th>
-                        <th>Waktu</th>
-                        <th>Jml Pelanggaran</th>
-                        <th>Capture</th>
-                        <th>Kamera</th>
-                    </tr>
-                </thead>
-                    {% for d in data.riwayat %}
-                    <tr>
-                        <td>{{loop.index}}</td>
-                        <td>{{ d[8] }}</td>
-                        <td>{{ d[4] }}</td>
-                        <td>{{ d[2] }}</td>
-                        <td>{{ d[3] }}</td>
-                        <td>{{ d[6] }}</td>
-                    </tr>
-                    {% endfor %}
-                <tbody>
-                
-                </tbody>
-            </table>
+                <div class="table-responsive">
+                    <table id="tableku" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Lokasi</th>
+                                <th>Waktu</th>
+                                <th>Jml Pelanggaran</th>
+                                <th>Capture</th>
+                                <th>Kamera</th>
+                            </tr>
+                        </thead>
+                            {% for d in data.riwayat %}
+                            <tr>
+                                <td>{{loop.index}}</td>
+                                <td>{{ d[8] }}</td>
+                                <td>{{ d[4] }}</td>
+                                <td>{{ d[2] }}</td>
+                                <td><img src="/static/upload/violations/{{ d[3] }}" class="img-thumbnail" width="250px" alt="Capture"></td>
+                                <td>{{ d[6] }}</td>
+                            </tr>
+                            {% endfor %}
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
