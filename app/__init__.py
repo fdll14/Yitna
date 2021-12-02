@@ -28,7 +28,6 @@ app.config['MYSQL_DATABASE_HOST'] = os.getenv("DB_HOST")
 mysql.init_app(app)
 
 from app.controllers import admincontroller
-from app.controllers import apicontroller
 from app.controllers import indexcontroller
 from app.controllers import logincontroller
 from app.controllers import satgascontroller
